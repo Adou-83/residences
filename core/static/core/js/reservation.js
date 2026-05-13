@@ -1,0 +1,63 @@
+document.addEventListener("DOMContentLoaded", function(){
+
+/* =========================
+   CALENDRIER
+========================= */
+
+let calendarEl = document.getElementById('calendar');
+
+if(calendarEl){
+
+    let events = datesReservees.map(function(res){
+        return {
+            start: res.from,
+            end: res.to,
+            display: 'background',
+            color: '#ff0000'
+        }
+    });
+
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'fr',
+        height: 400,
+        events: events
+    });
+
+    calendar.render();
+}
+
+
+/* =========================
+   CALCUL PRIX
+========================= */
+
+let arrivee = document.getElementById("id_date_arrivee");
+let depart = document.getElementById("id_date_depart");
+
+let nbNuits = document.getElementById("nb_nuits");
+let prixTotal = document.getElementById("prix_total");
+
+function calculerPrix(){
+
+    if(arrivee.value && depart.value){
+
+        let dateArrivee = new Date(arrivee.value);
+        let dateDepart = new Date(depart.value);
+
+        let diff = dateDepart - dateArrivee;
+        let nuits = diff / (1000 * 60 * 60 * 24);
+
+        if(nuits > 0){
+            nbNuits.innerText = nuits;
+            prixTotal.innerText = nuits * prixParNuit;
+        }
+    }
+}
+
+if(arrivee && depart){
+    arrivee.addEventListener("change", calculerPrix);
+    depart.addEventListener("change", calculerPrix);
+}
+
+});

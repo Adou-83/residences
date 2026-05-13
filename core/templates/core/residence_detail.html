@@ -1,0 +1,280 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+{{ residence.nom }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row">
+
+        <!-- GALERIE -->
+        <div class="col-lg-7">
+
+            <!-- IMAGE PRINCIPALE -->
+            {% if residence.image %}
+                <img src="{{ residence.image.url }}"
+                     class="img-fluid rounded shadow mb-4 w-100"
+                     style="height:450px; object-fit:cover;">
+            {% else %}
+                <img src="{% static 'core/images/residences/villa1.jpg' %}"
+                     class="img-fluid rounded shadow mb-4 w-100"
+                     style="height:450px; object-fit:cover;">
+            {% endif %}
+
+            <!-- AUTRES IMAGES -->
+            <div class="row">
+
+                {% for img in residence.images.all %}
+
+                    <div class="col-md-4 mb-3">
+
+                        <img src="{{ img.image.url }}"
+                             class="img-fluid rounded shadow-sm"
+                             style="height:150px; width:100%; object-fit:cover;">
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="col-12">
+
+                        <div class="alert alert-light">
+
+                            Aucune image supplémentaire.
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <!-- INFOS + RESERVATION -->
+        <div class="col-lg-5">
+
+            <div class="card border-0 shadow-lg p-4">
+
+                <h2 class="fw-bold mb-3">
+                    {{ residence.nom }}
+                </h2>
+
+                <p class="text-muted fs-5">
+                    📍 {{ residence.ville }}
+                </p>
+
+                <h3 class="text-success fw-bold mb-4">
+                    {{ residence.prix_par_nuit }} FCFA
+                    <small class="text-muted fs-6">/ nuit</small>
+                </h3>
+
+                <p class="mb-4">
+                    {{ residence.description }}
+                </p>
+
+                <!-- DISPONIBILITE -->
+                {% if residence.disponible %}
+
+                    <div class="alert alert-success">
+
+                        ✅ Disponible
+
+                    </div>
+
+                {% else %}
+
+                    <div class="alert alert-danger">
+
+                        ❌ Non disponible
+
+                    </div>
+
+                {% endif %}
+
+                <!-- FORMULAIRE -->
+                <h4 class="mt-4 mb-3">
+                    Réserver maintenant
+                </h4>
+
+                <!-- MESSAGES -->
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        {{ form.nom_client.label_tag }}
+                        {{ form.nom_client }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.telephone.label_tag }}
+                        {{ form.telephone }}
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            {{ form.date_arrivee.label_tag }}
+                            {{ form.date_arrivee }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            {{ form.date_depart.label_tag }}
+                            {{ form.date_depart }}
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.personnes.label_tag }}
+                        {{ form.personnes }}
+                    </div>
+
+                    <!-- CALCUL -->
+                    <div class="card bg-light border-0 p-3 mb-3">
+
+                        <h5>
+                            Nombre de nuits :
+                            <span id="nb-nuits">0</span>
+                        </h5>
+
+                        <h4 class="text-success">
+
+                            Total :
+                            <span id="prix-total">0</span>
+                            FCFA
+
+                        </h4>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-dark w-100 btn-lg">
+
+                        Réserver
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CALENDRIER -->
+    <div class="mt-5">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body">
+
+                <h3 class="mb-4">
+                    Calendrier des réservations
+                </h3>
+
+                <div id="calendar"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FULLCALENDAR -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    let calendarEl = document.getElementById('calendar');
+
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+
+        initialView: 'dayGridMonth',
+
+        events: [
+
+            {% for reservation in reservations %}
+
+            {
+                title: 'Réservé',
+                start: '{{ reservation.date_arrivee|date:"Y-m-d" }}',
+                end: '{{ reservation.date_depart|date:"Y-m-d" }}',
+                color: 'red'
+            },
+
+            {% endfor %}
+
+        ]
+
+    });
+
+    calendar.render();
+
+});
+
+</script>
+
+<!-- CALCUL PRIX -->
+<script>
+
+const arrivee = document.getElementById('id_date_arrivee');
+const depart = document.getElementById('id_date_depart');
+
+const nbNuits = document.getElementById('nb-nuits');
+const prixTotal = document.getElementById('prix-total');
+
+const prixParNuit = {{ residence.prix_par_nuit }};
+
+function calculerPrix() {
+
+    if(arrivee.value && depart.value){
+
+        let date1 = new Date(arrivee.value);
+        let date2 = new Date(depart.value);
+
+        let difference = (date2 - date1) / (1000 * 60 * 60 * 24);
+
+        if(difference > 0){
+
+            nbNuits.innerText = difference;
+            prixTotal.innerText = difference * prixParNuit;
+
+        }
+
+    }
+
+}
+
+arrivee.addEventListener('change', calculerPrix);
+depart.addEventListener('change', calculerPrix);
+
+</script>
+
+{% endblock %}

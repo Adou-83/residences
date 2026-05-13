@@ -1,0 +1,155 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- BANNIERE -->
+<section class="position-relative">
+
+    <img src="{% static 'core/images/barnieres/barniere.jpg' %}"
+         class="w-100"
+         style="height: 650px; object-fit: cover;">
+
+    <!-- Overlay sombre -->
+    <div class="position-absolute top-0 start-0 w-100 h-100"
+         style="background: rgba(0,0,0,0.5);">
+    </div>
+
+    <!-- Texte -->
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+
+        <h1 class="display-3 fw-bold">
+            Résidences Haut Standing
+        </h1>
+
+        <p class="lead fs-3">
+            Luxe • Confort • Sécurité
+        </p>
+
+        <a href="{% url 'residences' %}"
+           class="btn btn-warning btn-lg px-5 mt-3">
+
+            Voir nos résidences
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- SECTION PRESENTATION -->
+<section class="container py-5">
+
+    <div class="row align-items-center">
+
+        <div class="col-md-6">
+
+            <h2 class="fw-bold mb-4">
+                Bienvenue chez Résidences Privées
+            </h2>
+
+            <p class="lead">
+
+                Nous proposons des résidences modernes,
+                élégantes et sécurisées pour vos séjours
+                personnels et professionnels.
+
+            </p>
+
+            <p>
+
+                Profitez d’un service haut de gamme,
+                de réservations rapides et d’un confort exceptionnel.
+
+            </p>
+
+            <a href="{% url 'residences' %}"
+               class="btn btn-dark mt-3">
+
+               Explorer les résidences
+
+            </a>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <img src="{% static 'core/images/residences/villa1.jpg' %}"
+                 class="img-fluid rounded shadow">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SECTION SERVICES -->
+<section class="bg-white py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+                Pourquoi nous choisir ?
+            </h2>
+
+        </div>
+
+        <div class="row text-center">
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow p-4">
+
+                    <h3>🏠</h3>
+
+                    <h4>Résidences Premium</h4>
+
+                    <p>
+                        Des logements modernes et confortables.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow p-4">
+
+                    <h3>🔒</h3>
+
+                    <h4>Sécurité Garantie</h4>
+
+                    <p>
+                        Des résidences sécurisées 24h/24.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow p-4">
+
+                    <h3>⚡</h3>
+
+                    <h4>Réservation Rapide</h4>
+
+                    <p>
+                        Réservez facilement en ligne.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
