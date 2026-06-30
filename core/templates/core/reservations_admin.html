@@ -4,9 +4,13 @@
 
 {% block content %}
 
+<div class="container">
+
 <h2 class="mb-4">Gestion des Réservations</h2>
 
-<table class="table table-bordered table-striped">
+<div class="table-responsive">
+
+<table class="table table-bordered table-striped align-middle">
 
 <thead class="table-dark">
 <tr>
@@ -17,6 +21,7 @@
 <th>Personnes</th>
 <th>Prix total</th>
 <th>Statut</th>
+<th>QR Code</th>
 <th>Actions</th>
 </tr>
 </thead>
@@ -48,12 +53,36 @@
 <td>
 
 {% if r.confirme %}
+<span class="badge bg-success">
+Confirmée
+</span>
+{% else %}
+<span class="badge bg-warning text-dark">
+En attente
+</span>
+{% endif %}
 
-<span class="badge bg-success">Confirmée</span>
+</td>
+
+<td class="text-center">
+
+{% if r.qr_code %}
+
+<a href="{{ r.qr_code.url }}" target="_blank">
+
+<img
+src="{{ r.qr_code.url }}"
+alt="QR"
+style="width:80px;height:80px;"
+class="img-fluid rounded border">
+
+</a>
 
 {% else %}
 
-<span class="badge bg-warning text-dark">En attente</span>
+<span class="text-danger">
+QR absent
+</span>
 
 {% endif %}
 
@@ -63,13 +92,15 @@
 
 {% if not r.confirme %}
 
-<a href="{% url 'confirmer_reservation' r.id %}" class="btn btn-success btn-sm">
+<a href="{% url 'confirmer_reservation' r.id %}"
+class="btn btn-success btn-sm mb-1">
 Confirmer
 </a>
 
 {% endif %}
 
-<a href="{% url 'annuler_reservation' r.id %}" class="btn btn-danger btn-sm">
+<a href="{% url 'annuler_reservation' r.id %}"
+class="btn btn-danger btn-sm">
 Annuler
 </a>
 
@@ -80,7 +111,7 @@ Annuler
 {% empty %}
 
 <tr>
-<td colspan="8" class="text-center">
+<td colspan="9" class="text-center">
 Aucune réservation pour le moment
 </td>
 </tr>
@@ -90,5 +121,9 @@ Aucune réservation pour le moment
 </tbody>
 
 </table>
+
+</div>
+
+</div>
 
 {% endblock %}

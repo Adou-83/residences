@@ -1,0 +1,49 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<div class="container py-5 text-center">
+
+    <h2 class="mb-4">📱 Vérification Réservation (QR Scan)</h2>
+
+    <div class="card shadow p-4">
+
+        <h4>👤 {{ reservation.nom_client }}</h4>
+
+        <p>🏠 {{ reservation.residence.nom }}</p>
+
+        <p>📍 {{ reservation.residence.ville }}</p>
+
+        <p>📅 {{ reservation.date_arrivee }} → {{ reservation.date_depart }}</p>
+
+        <p>👥 {{ reservation.personnes }} personnes</p>
+
+        <p>📞 {{ reservation.telephone }}</p>
+
+        <p>📧 {{ reservation.email }}</p>
+
+        <h5 class="text-success">
+            💰 {{ reservation.prix_total }} FCFA
+        </h5>
+
+        <hr>
+
+        {% if reservation.confirme %}
+            <div class="alert alert-success">
+                ✔ Check-in déjà effectué
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                ⏳ Réservation en attente de check-in
+            </div>
+
+            <a href="{% url 'confirmer_reservation' reservation.id %}"
+               class="btn btn-success w-100 mt-3">
+               ✔ Faire Check-in
+            </a>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

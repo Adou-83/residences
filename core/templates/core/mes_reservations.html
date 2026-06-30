@@ -1,0 +1,136 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+        📋 Mes réservations
+    </h2>
+
+    <div class="row mb-4">
+
+        <div class="col-md-6 mb-3">
+            <div class="card shadow border-0 text-center p-4">
+                <h6 class="text-muted">Total réservations</h6>
+                <h2>{{ total_reservations }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card shadow border-0 text-center p-4">
+                <h6 class="text-muted">Total dépensé</h6>
+                <h2>{{ total_depense }} FCFA</h2>
+            </div>
+        </div>
+
+    </div>
+
+    {% if reservations %}
+
+    <div class="row">
+
+        {% for r in reservations %}
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body">
+
+                    <h4 class="mb-3">
+                        🏠 {{ r.residence.nom }}
+                    </h4>
+
+                    <p>
+                        <strong>Ville :</strong>
+                        {{ r.residence.ville }}
+                    </p>
+
+                    <p>
+                        <strong>Client :</strong>
+                        {{ r.nom_client }}
+                    </p>
+
+                    <p>
+                        <strong>Téléphone :</strong>
+                        {{ r.telephone }}
+                    </p>
+
+                    <p>
+                        <strong>Arrivée :</strong>
+                        {{ r.date_arrivee }}
+                    </p>
+
+                    <p>
+                        <strong>Départ :</strong>
+                        {{ r.date_depart }}
+                    </p>
+
+                    <p>
+                        <strong>Montant :</strong>
+                        <span class="text-success fw-bold">
+                            {{ r.prix_total }} FCFA
+                        </span>
+                    </p>
+
+                    {% if r.confirme %}
+                        <span class="badge bg-success">
+                            Réservation confirmée
+                        </span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">
+                            En attente de confirmation
+                        </span>
+                    {% endif %}
+
+                    {% if r.qr_code %}
+
+                    <hr>
+
+                    <div class="text-center">
+
+                        <h6 class="mb-3">
+                            QR Code Réservation
+                        </h6>
+
+                        <img
+                            src="{{ r.qr_code.url }}"
+                            class="img-fluid border rounded p-2"
+                            style="max-width:220px;"
+                            alt="QR Code">
+
+                        <p class="small text-muted mt-3">
+                            Le client ou l'administrateur peut scanner ce code pour vérifier la réservation.
+                        </p>
+
+                        <a href="{{ r.qr_code.url }}"
+                           download
+                           class="btn btn-primary btn-sm">
+                            Télécharger le QR Code
+                        </a>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-info">
+        Vous n'avez aucune réservation pour le moment.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

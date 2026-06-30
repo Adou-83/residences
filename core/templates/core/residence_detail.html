@@ -1,184 +1,129 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block title %}
-{{ residence.nom }}
-{% endblock %}
+{% block title %}Détail Résidence{% endblock %}
 
 {% block content %}
 
-<div class="container py-5">
+<div class="container py-4">
 
-    <div class="row">
+    <!-- =========================
+        SLIDER
+    ========================== -->
 
-        <!-- GALERIE -->
-        <div class="col-lg-7">
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-8">
 
-            <!-- IMAGE PRINCIPALE -->
-            {% if residence.image %}
-                <img src="{{ residence.image.url }}"
-                     class="img-fluid rounded shadow mb-4 w-100"
-                     style="height:450px; object-fit:cover;">
-            {% else %}
-                <img src="{% static 'core/images/residences/villa1.jpg' %}"
-                     class="img-fluid rounded shadow mb-4 w-100"
-                     style="height:450px; object-fit:cover;">
-            {% endif %}
+            <div id="sliderResidence"
+                 class="carousel slide shadow rounded overflow-hidden"
+                 data-bs-ride="carousel">
 
-            <!-- AUTRES IMAGES -->
-            <div class="row">
+                <div class="carousel-inner">
 
-                {% for img in residence.images.all %}
+                    {% if residence.image %}
+                    <div class="carousel-item active">
+                        <img src="{{ residence.image.url }}"
+                             class="w-100"
+                             style="height:450px; object-fit:cover;">
+                    </div>
+                    {% endif %}
 
-                    <div class="col-md-4 mb-3">
-
+                    {% for img in residence.images.all %}
+                    <div class="carousel-item">
                         <img src="{{ img.image.url }}"
-                             class="img-fluid rounded shadow-sm"
-                             style="height:150px; width:100%; object-fit:cover;">
-
+                             class="w-100"
+                             style="height:450px; object-fit:cover;">
                     </div>
+                    {% endfor %}
 
-                {% empty %}
+                </div>
 
-                    <div class="col-12">
+                <button class="carousel-control-prev" type="button"
+                        data-bs-target="#sliderResidence" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
 
-                        <div class="alert alert-light">
-
-                            Aucune image supplémentaire.
-
-                        </div>
-
-                    </div>
-
-                {% endfor %}
+                <button class="carousel-control-next" type="button"
+                        data-bs-target="#sliderResidence" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
 
             </div>
 
         </div>
+    </div>
 
-        <!-- INFOS + RESERVATION -->
+    <!-- =========================
+        INFOS + FORM
+    ========================== -->
+
+    <div class="row g-4">
+
+        <!-- INFOS -->
+        <div class="col-lg-7">
+
+            <h2 class="fw-bold">{{ residence.nom }}</h2>
+
+            <p class="text-muted">{{ residence.description }}</p>
+
+            <span class="badge bg-dark fs-6 p-2 mb-3">
+                💰 {{ residence.prix_par_nuit }} FCFA / nuit
+            </span>
+
+            <hr>
+
+            <h5>📌 Infos</h5>
+            <ul class="text-muted">
+                <li>✔ Sécurisée</li>
+                <li>✔ Service client</li>
+                <li>✔ Accès facile</li>
+            </ul>
+
+        </div>
+
+        <!-- FORM -->
         <div class="col-lg-5">
 
-            <div class="card border-0 shadow-lg p-4">
+            <div class="card shadow p-4 sticky-top" style="top:90px;">
 
-                <h2 class="fw-bold mb-3">
-                    {{ residence.nom }}
-                </h2>
-
-                <p class="text-muted fs-5">
-                    📍 {{ residence.ville }}
-                </p>
-
-                <h3 class="text-success fw-bold mb-4">
-                    {{ residence.prix_par_nuit }} FCFA
-                    <small class="text-muted fs-6">/ nuit</small>
-                </h3>
-
-                <p class="mb-4">
-                    {{ residence.description }}
-                </p>
-
-                <!-- DISPONIBILITE -->
-                {% if residence.disponible %}
-
-                    <div class="alert alert-success">
-
-                        ✅ Disponible
-
-                    </div>
-
-                {% else %}
-
-                    <div class="alert alert-danger">
-
-                        ❌ Non disponible
-
-                    </div>
-
-                {% endif %}
-
-                <!-- FORMULAIRE -->
-                <h4 class="mt-4 mb-3">
-                    Réserver maintenant
-                </h4>
-
-                <!-- MESSAGES -->
-                {% if messages %}
-
-                    {% for message in messages %}
-
-                        <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
-                        </div>
-
-                    {% endfor %}
-
-                {% endif %}
+                <h4 class="fw-bold mb-3">Réservation</h4>
 
                 <form method="POST">
-
                     {% csrf_token %}
 
-                    <div class="mb-3">
-                        {{ form.nom_client.label_tag }}
+                    <div class="mb-2">
                         {{ form.nom_client }}
                     </div>
 
-                    <div class="mb-3">
-                        {{ form.email.label_tag }}
-                        {{ form.email }}
-                    </div>
-
-                    <div class="mb-3">
-                        {{ form.telephone.label_tag }}
+                    <div class="mb-2">
                         {{ form.telephone }}
                     </div>
 
-                    <div class="row">
-
-                        <div class="col-md-6 mb-3">
-                            {{ form.date_arrivee.label_tag }}
-                            {{ form.date_arrivee }}
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            {{ form.date_depart.label_tag }}
-                            {{ form.date_depart }}
-                        </div>
-
+                    <div class="mb-2">
+                        {{ form.date_arrivee }}
                     </div>
 
-                    <div class="mb-3">
-                        {{ form.personnes.label_tag }}
+                    <div class="mb-2">
+                        {{ form.date_depart }}
+                    </div>
+
+                    <div class="mb-2">
                         {{ form.personnes }}
                     </div>
 
-                    <!-- CALCUL -->
-                    <div class="card bg-light border-0 p-3 mb-3">
-
-                        <h5>
-                            Nombre de nuits :
-                            <span id="nb-nuits">0</span>
-                        </h5>
-
-                        <h4 class="text-success">
-
-                            Total :
-                            <span id="prix-total">0</span>
-                            FCFA
-
-                        </h4>
-
-                    </div>
-
-                    <button type="submit"
-                            class="btn btn-dark w-100 btn-lg">
-
-                        Réserver
-
+                    <button class="btn btn-primary w-100 mt-2">
+                        ✔ Confirmer
                     </button>
 
                 </form>
+
+                <hr>
+
+                <a id="whatsapp-btn"
+                   class="btn btn-success w-100"
+                   target="_blank">
+                    💬 WhatsApp
+                </a>
 
             </div>
 
@@ -186,94 +131,85 @@
 
     </div>
 
-    <!-- CALENDRIER -->
-    <div class="mt-5">
+    <!-- =========================
+        CALENDRIER
+    ========================== -->
 
-        <div class="card shadow border-0">
+    <div class="card shadow p-4 mt-5">
 
-            <div class="card-body">
+        <h4>📅 Disponibilités</h4>
 
-                <h3 class="mb-4">
-                    Calendrier des réservations
-                </h3>
-
-                <div id="calendar"></div>
-
-            </div>
-
-        </div>
+        <div id="calendar"></div>
 
     </div>
 
 </div>
 
-<!-- FULLCALENDAR -->
+<!-- =========================
+    JS SAFE VERSION
+========================= -->
+
 <script>
 
-document.addEventListener('DOMContentLoaded', function() {
+let datesReservees = {{ dates_reservees|safe }};
+let nomResidence = "{{ residence.nom }}";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =========================
+        CALENDAR SAFE
+    ========================== */
 
     let calendarEl = document.getElementById('calendar');
 
-    let calendar = new FullCalendar.Calendar(calendarEl, {
+    if (calendarEl && typeof FullCalendar !== "undefined") {
 
-        initialView: 'dayGridMonth',
+        let events = datesReservees.map(r => ({
+            start: r.from,
+            end: r.to,
+            display: 'background',
+            color: '#dc3545'
+        }));
 
-        events: [
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'fr',
+            height: 450,
+            events: events
+        });
 
-            {% for reservation in reservations %}
-
-            {
-                title: 'Réservé',
-                start: '{{ reservation.date_arrivee|date:"Y-m-d" }}',
-                end: '{{ reservation.date_depart|date:"Y-m-d" }}',
-                color: 'red'
-            },
-
-            {% endfor %}
-
-        ]
-
-    });
-
-    calendar.render();
-
-});
-
-</script>
-
-<!-- CALCUL PRIX -->
-<script>
-
-const arrivee = document.getElementById('id_date_arrivee');
-const depart = document.getElementById('id_date_depart');
-
-const nbNuits = document.getElementById('nb-nuits');
-const prixTotal = document.getElementById('prix-total');
-
-const prixParNuit = {{ residence.prix_par_nuit }};
-
-function calculerPrix() {
-
-    if(arrivee.value && depart.value){
-
-        let date1 = new Date(arrivee.value);
-        let date2 = new Date(depart.value);
-
-        let difference = (date2 - date1) / (1000 * 60 * 60 * 24);
-
-        if(difference > 0){
-
-            nbNuits.innerText = difference;
-            prixTotal.innerText = difference * prixParNuit;
-
-        }
-
+        calendar.render();
     }
 
-}
+    /* =========================
+        WHATSAPP SAFE
+    ========================== */
 
-arrivee.addEventListener('change', calculerPrix);
-depart.addEventListener('change', calculerPrix);
+    let btn = document.getElementById("whatsapp-btn");
+
+    let arrivee = document.getElementById("id_date_arrivee");
+    let depart = document.getElementById("id_date_depart");
+    let personnes = document.getElementById("id_personnes");
+
+    function updateWA() {
+
+        if (!btn || !arrivee || !depart || !personnes) return;
+
+        let msg = `Bonjour, je veux réserver ${nomResidence}
+Arrivée: ${arrivee.value}
+Départ: ${depart.value}
+Personnes: ${personnes.value}`;
+
+        btn.href = "https://wa.me/2250778485274?text=" + encodeURIComponent(msg);
+    }
+
+    if (arrivee) arrivee.addEventListener("change", updateWA);
+    if (depart) depart.addEventListener("change", updateWA);
+    if (personnes) personnes.addEventListener("input", updateWA);
+
+    updateWA();
+
+});
 
 </script>
 

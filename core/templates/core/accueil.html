@@ -1,155 +1,152 @@
 {% extends "core/base.html" %}
 {% load static %}
 
+{% block title %}
+Accueil - Résidences Privées
+{% endblock %}
+
 {% block content %}
 
-<!-- BANNIERE -->
-<section class="position-relative">
+<!-- =========================
+    HERO PREMIUM
+========================= -->
 
-    <img src="{% static 'core/images/barnieres/barniere.jpg' %}"
-         class="w-100"
-         style="height: 650px; object-fit: cover;">
+<section class="hero">
 
-    <!-- Overlay sombre -->
-    <div class="position-absolute top-0 start-0 w-100 h-100"
-         style="background: rgba(0,0,0,0.5);">
-    </div>
+    <div class="hero-content text-center">
 
-    <!-- Texte -->
-    <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+        <img src="/media/residences/LOGO.jpg"
+             alt="Logo"
+             class="mb-4"
+             style="width:110px;height:110px;object-fit:cover;border-radius:50%;border:3px solid rgba(255,255,255,0.7);">
 
-        <h1 class="display-3 fw-bold">
-            Résidences Haut Standing
+        <h1>
+            Trouvez votre résidence idéale
         </h1>
 
-        <p class="lead fs-3">
-            Luxe • Confort • Sécurité
+        <p>
+            Réservez des résidences modernes, sécurisées et confortables en quelques clics
         </p>
 
-        <a href="{% url 'residences' %}"
-           class="btn btn-warning btn-lg px-5 mt-3">
-
-            Voir nos résidences
-
+        <a href="{% url 'residences' %}" class="btn btn-warning btn-lg mt-3 px-5">
+            Voir les résidences
         </a>
 
     </div>
 
 </section>
 
-<!-- SECTION PRESENTATION -->
-<section class="container py-5">
+<!-- =========================
+    PRÉSENTATION
+========================= -->
 
-    <div class="row align-items-center">
+<div class="container py-5">
+
+    <div class="row align-items-center g-4">
 
         <div class="col-md-6">
 
-            <h2 class="fw-bold mb-4">
-                Bienvenue chez Résidences Privées
+            <h2 class="fw-bold mb-3">
+                Un séjour confortable et sécurisé
             </h2>
 
-            <p class="lead">
-
-                Nous proposons des résidences modernes,
-                élégantes et sécurisées pour vos séjours
-                personnels et professionnels.
-
+            <p class="text-muted fs-5">
+                Nous proposons des résidences modernes, bien situées et adaptées
+                à tous vos besoins : vacances, travail ou séjour en famille.
             </p>
 
-            <p>
-
-                Profitez d’un service haut de gamme,
-                de réservations rapides et d’un confort exceptionnel.
-
-            </p>
-
-            <a href="{% url 'residences' %}"
-               class="btn btn-dark mt-3">
-
-               Explorer les résidences
-
+            <a href="{% url 'residences' %}" class="btn btn-dark px-4 mt-3">
+                Explorer maintenant
             </a>
 
         </div>
 
         <div class="col-md-6">
 
-            <img src="{% static 'core/images/residences/villa1.jpg' %}"
-                 class="img-fluid rounded shadow">
+            <div class="card shadow-lg overflow-hidden">
+
+                <img src="{% static 'core/images/residences/villa1.jpg' %}"
+                     class="w-100"
+                     style="height:420px;object-fit:cover;">
+
+            </div>
 
         </div>
 
     </div>
 
-</section>
+</div>
 
-<!-- SECTION SERVICES -->
-<section class="bg-white py-5">
+<!-- =========================
+    SERVICES
+========================= -->
+
+<div class="bg-light py-5">
 
     <div class="container">
 
         <div class="text-center mb-5">
 
-            <h2 class="fw-bold">
-                Pourquoi nous choisir ?
-            </h2>
+            <h2 class="fw-bold">Pourquoi nous choisir ?</h2>
+
+            <p class="text-muted">Une expérience simple, rapide et sécurisée</p>
 
         </div>
 
-        <div class="row text-center">
+        <div class="row g-4">
 
             <div class="col-md-4">
-
-                <div class="card border-0 shadow p-4">
-
-                    <h3>🏠</h3>
-
-                    <h4>Résidences Premium</h4>
-
-                    <p>
-                        Des logements modernes et confortables.
-                    </p>
-
+                <div class="card p-4 text-center h-100 shadow-sm">
+                    <div class="fs-1">🏠</div>
+                    <h5>Résidences modernes</h5>
+                    <p class="text-muted">Espaces propres, équipés et confortables.</p>
                 </div>
-
             </div>
 
             <div class="col-md-4">
-
-                <div class="card border-0 shadow p-4">
-
-                    <h3>🔒</h3>
-
-                    <h4>Sécurité Garantie</h4>
-
-                    <p>
-                        Des résidences sécurisées 24h/24.
-                    </p>
-
+                <div class="card p-4 text-center h-100 shadow-sm">
+                    <div class="fs-1">🔒</div>
+                    <h5>Sécurité garantie</h5>
+                    <p class="text-muted">Résidences situées dans des zones sûres.</p>
                 </div>
-
             </div>
 
             <div class="col-md-4">
-
-                <div class="card border-0 shadow p-4">
-
-                    <h3>⚡</h3>
-
-                    <h4>Réservation Rapide</h4>
-
-                    <p>
-                        Réservez facilement en ligne.
-                    </p>
-
+                <div class="card p-4 text-center h-100 shadow-sm">
+                    <div class="fs-1">⚡</div>
+                    <h5>Réservation rapide</h5>
+                    <p class="text-muted">WhatsApp ou formulaire en quelques secondes.</p>
                 </div>
-
             </div>
 
         </div>
 
     </div>
 
-</section>
+</div>
+
+<!-- =========================
+    CTA FINAL
+========================= -->
+
+<div class="container py-5">
+
+    <div class="card p-5 text-center shadow-sm">
+
+        <h3 class="fw-bold">
+            Réservez votre résidence maintenant
+        </h3>
+
+        <p class="text-muted">
+            Choisissez une résidence disponible et réservez immédiatement.
+        </p>
+
+        <a href="{% url 'residences' %}" class="btn btn-warning btn-lg px-5">
+            Commencer
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}
