@@ -9,6 +9,8 @@ urlpatterns = [
     path('', include('core.urls')),
 ]
 
-# ✅ IMPORTANT : pour afficher les images uploadées
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Affichage des images MEDIA
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)
