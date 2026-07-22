@@ -1,0 +1,386 @@
+[
+{
+    "model": "core.residence",
+    "pk": 2,
+    "fields": {
+        "nom": "studio meuble",
+        "ville": "Angre 8e tranche",
+        "description": "Studio meublé situé au rez de chaussée d'un bâtiment situé à Angré 8e tranche en face du groupement 4000 D appele cité Arafat",
+        "prix_par_nuit": "25000.00",
+        "disponible": true,
+        "image": "residences/STUDIO_C.jpg"
+    }
+},
+{
+    "model": "core.residence",
+    "pk": 7,
+    "fields": {
+        "nom": "Chambre salon meublée",
+        "ville": "Angre",
+        "description": "une chambre salon avec toutes les commodités situé au niveau Chu d'Angré non loin du restaurant MID'IT avec des une possibilité de reduction pour les longs séjours",
+        "prix_par_nuit": "35000.00",
+        "disponible": true,
+        "image": "residences/STUDIO_E_NGxWmwd.jpg"
+    }
+},
+{
+    "model": "core.residence",
+    "pk": 8,
+    "fields": {
+        "nom": "2 Chambres Salon meublée",
+        "ville": "Angré",
+        "description": "2 Chambres salon de très bon standing avec toutes les commodités situé au nouveau Chu d'Angré non loin du restaurant MID'IT. Toutes les chambres sont autonomes avec des douches visiteurs. Possibilité de reduction pour les longs séjours.",
+        "prix_par_nuit": "65000.00",
+        "disponible": true,
+        "image": "residences/3PIECES_B.jpg"
+    }
+},
+{
+    "model": "core.residence",
+    "pk": 9,
+    "fields": {
+        "nom": "studio meuble",
+        "ville": "Angre nouveau chu",
+        "description": "Studio meublé situé au 1er étage d'un bâtiment situé à Angré 8e tranche en face du groupement 4000 D appele cité Arafat",
+        "prix_par_nuit": "25000.00",
+        "disponible": true,
+        "image": "residences/3PIECES_A.jpg"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 1,
+    "fields": {
+        "residence": 2,
+        "nom_client": "luc",
+        "email": "adluc1983@gmail.com",
+        "telephone": "0101852014",
+        "date_arrivee": "2026-05-22",
+        "date_depart": "2026-05-23",
+        "personnes": 2,
+        "prix_total": "25000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-22T14:05:10.402Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 2,
+    "fields": {
+        "residence": 2,
+        "nom_client": "luc",
+        "email": "adluc1983@gmail.com",
+        "telephone": "0101852014",
+        "date_arrivee": "2026-05-22",
+        "date_depart": "2026-05-23",
+        "personnes": 2,
+        "prix_total": "25000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-22T14:05:10.403Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 3,
+    "fields": {
+        "residence": 2,
+        "nom_client": "luc",
+        "email": "adluc1983@gmail.com",
+        "telephone": "0101852014",
+        "date_arrivee": "2026-05-22",
+        "date_depart": "2026-05-23",
+        "personnes": 2,
+        "prix_total": "25000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-22T14:05:10.404Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 4,
+    "fields": {
+        "residence": 2,
+        "nom_client": "luc",
+        "email": "adluc1983@gmail.com",
+        "telephone": "0101852014",
+        "date_arrivee": "2026-05-22",
+        "date_depart": "2026-05-23",
+        "personnes": 2,
+        "prix_total": "25000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-22T14:05:10.403Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 5,
+    "fields": {
+        "residence": 7,
+        "nom_client": "adou vivien",
+        "email": "adlaile@gmail.com",
+        "telephone": "0708554545",
+        "date_arrivee": "2026-05-29",
+        "date_depart": "2026-05-30",
+        "personnes": 2,
+        "prix_total": "35000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-29T08:38:56.489Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 6,
+    "fields": {
+        "residence": 7,
+        "nom_client": "adou vivien",
+        "email": "adlaile@gmail.com",
+        "telephone": "0708554545",
+        "date_arrivee": "2026-05-29",
+        "date_depart": "2026-05-30",
+        "personnes": 2,
+        "prix_total": "35000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-29T08:38:56.491Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 7,
+    "fields": {
+        "residence": 7,
+        "nom_client": "adou vivien",
+        "email": "adlaile@gmail.com",
+        "telephone": "0708038022",
+        "date_arrivee": "2026-05-30",
+        "date_depart": "2026-05-31",
+        "personnes": 2,
+        "prix_total": "35000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-29T09:01:06.793Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 8,
+    "fields": {
+        "residence": 8,
+        "nom_client": "luc  vivien",
+        "email": "adlaile@gmail.com",
+        "telephone": "0708038022",
+        "date_arrivee": "2026-05-30",
+        "date_depart": "2026-05-31",
+        "personnes": 2,
+        "prix_total": "65000.00",
+        "confirme": false,
+        "date_reservation": "2026-05-29T09:32:06.806Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 9,
+    "fields": {
+        "residence": 7,
+        "nom_client": "Luc Adou",
+        "email": "adluc1983@gmail.com",
+        "telephone": "0708038022",
+        "date_arrivee": "2026-06-17",
+        "date_depart": "2026-06-20",
+        "personnes": 2,
+        "prix_total": "105000.00",
+        "confirme": false,
+        "date_reservation": "2026-06-17T11:44:45.002Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 10,
+    "fields": {
+        "residence": 7,
+        "nom_client": "Luc Adou",
+        "email": "adluc1983@gmail.com",
+        "telephone": "0708038022",
+        "date_arrivee": "2026-06-17",
+        "date_depart": "2026-06-20",
+        "personnes": 2,
+        "prix_total": "105000.00",
+        "confirme": false,
+        "date_reservation": "2026-06-17T11:44:45.003Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 11,
+    "fields": {
+        "residence": 8,
+        "nom_client": "Luc Adou",
+        "email": "",
+        "telephone": "0708038022",
+        "date_arrivee": "2026-06-17",
+        "date_depart": "2026-06-20",
+        "personnes": 2,
+        "prix_total": "195000.00",
+        "confirme": false,
+        "date_reservation": "2026-06-17T13:42:50.771Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 12,
+    "fields": {
+        "residence": 7,
+        "nom_client": "Luc Adou",
+        "email": "",
+        "telephone": "0708038022",
+        "date_arrivee": "2026-06-29",
+        "date_depart": "2026-06-30",
+        "personnes": 2,
+        "prix_total": "35000.00",
+        "confirme": false,
+        "date_reservation": "2026-06-29T16:33:43.552Z"
+    }
+},
+{
+    "model": "core.reservation",
+    "pk": 13,
+    "fields": {
+        "residence": 2,
+        "nom_client": "adou nolan",
+        "email": "ad@gmail.com",
+        "telephone": "0101019686",
+        "date_arrivee": "2026-06-29",
+        "date_depart": "2026-06-30",
+        "personnes": 2,
+        "prix_total": "25000.00",
+        "confirme": false,
+        "date_reservation": "2026-06-29T16:39:39.945Z"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 1,
+    "fields": {
+        "residence": 2,
+        "image": "residences/STUDIO_B.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 5,
+    "fields": {
+        "residence": 2,
+        "image": "residences/STUDIO_B_aZznXyT.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 6,
+    "fields": {
+        "residence": 2,
+        "image": "residences/STUDIO_F.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 7,
+    "fields": {
+        "residence": 2,
+        "image": "residences/STUDIO_G_ZDr6IK2.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 8,
+    "fields": {
+        "residence": 2,
+        "image": "residences/STUDIO_B_YtLe8qi.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 9,
+    "fields": {
+        "residence": 2,
+        "image": "residences/STUDIO_F_8ssjXj9.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 10,
+    "fields": {
+        "residence": 2,
+        "image": "residences/STUDIO_G_PjAHO6C.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 17,
+    "fields": {
+        "residence": 7,
+        "image": "residences/2PIEB_ZySTlCE.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 21,
+    "fields": {
+        "residence": 7,
+        "image": "residences/2PIED_znsFzb2.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 25,
+    "fields": {
+        "residence": 7,
+        "image": "residences/2PIE_otilN7U.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 26,
+    "fields": {
+        "residence": 8,
+        "image": "residences/3PIECES_Lv8c8xn.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 27,
+    "fields": {
+        "residence": 8,
+        "image": "residences/2PIEB_ZySTlCE_36ZGCR7.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 28,
+    "fields": {
+        "residence": 8,
+        "image": "residences/STUDIO_G_ZDr6IK2_CnSpgv3.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 29,
+    "fields": {
+        "residence": 9,
+        "image": "residences/STUDIO_C_sitHP1u.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 30,
+    "fields": {
+        "residence": 9,
+        "image": "residences/STUDIO_A.jpg"
+    }
+},
+{
+    "model": "core.imageresidence",
+    "pk": 31,
+    "fields": {
+        "residence": 9,
+        "image": "residences/STUDIO_23KCVAM.jpg"
+    }
+}
+]
