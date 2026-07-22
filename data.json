@@ -1,11 +1,11 @@
-[
+Ôªø[
 {
     "model": "core.residence",
     "pk": 2,
     "fields": {
         "nom": "studio meuble",
         "ville": "Angre 8e tranche",
-        "description": "Studio meublÈ situÈ au rez de chaussÈe d'un b‚timent situÈ ‡ AngrÈ 8e tranche en face du groupement 4000 D appele citÈ Arafat",
+        "description": "Studio meubl√© situ√© au rez de chauss√©e d'un b√¢timent situ√© √† Angr√© 8e tranche en face du groupement 4000 D appele cit√© Arafat",
         "prix_par_nuit": "25000.00",
         "disponible": true,
         "image": "residences/STUDIO_C.jpg"
@@ -15,9 +15,9 @@
     "model": "core.residence",
     "pk": 7,
     "fields": {
-        "nom": "Chambre salon meublÈe",
+        "nom": "Chambre salon meubl√©e",
         "ville": "Angre",
-        "description": "une chambre salon avec toutes les commoditÈs situÈ au niveau Chu d'AngrÈ non loin du restaurant MID'IT avec des une possibilitÈ de reduction pour les longs sÈjours",
+        "description": "une chambre salon avec toutes les commodit√©s situ√© au niveau Chu d'Angr√© non loin du restaurant MID'IT avec des une possibilit√© de reduction pour les longs s√©jours",
         "prix_par_nuit": "35000.00",
         "disponible": true,
         "image": "residences/STUDIO_E_NGxWmwd.jpg"
@@ -27,9 +27,9 @@
     "model": "core.residence",
     "pk": 8,
     "fields": {
-        "nom": "2 Chambres Salon meublÈe",
-        "ville": "AngrÈ",
-        "description": "2 Chambres salon de trËs bon standing avec toutes les commoditÈs situÈ au nouveau Chu d'AngrÈ non loin du restaurant MID'IT. Toutes les chambres sont autonomes avec des douches visiteurs. PossibilitÈ de reduction pour les longs sÈjours.",
+        "nom": "2 Chambres Salon meubl√©e",
+        "ville": "Angr√©",
+        "description": "2 Chambres salon de tr√®s bon standing avec toutes les commodit√©s situ√© au nouveau Chu d'Angr√© non loin du restaurant MID'IT. Toutes les chambres sont autonomes avec des douches visiteurs. Possibilit√© de reduction pour les longs s√©jours.",
         "prix_par_nuit": "65000.00",
         "disponible": true,
         "image": "residences/3PIECES_B.jpg"
@@ -41,7 +41,7 @@
     "fields": {
         "nom": "studio meuble",
         "ville": "Angre nouveau chu",
-        "description": "Studio meublÈ situÈ au 1er Ètage d'un b‚timent situÈ ‡ AngrÈ 8e tranche en face du groupement 4000 D appele citÈ Arafat",
+        "description": "Studio meubl√© situ√© au 1er √©tage d'un b√¢timent situ√© √† Angr√© 8e tranche en face du groupement 4000 D appele cit√© Arafat",
         "prix_par_nuit": "25000.00",
         "disponible": true,
         "image": "residences/3PIECES_A.jpg"
