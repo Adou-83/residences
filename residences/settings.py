@@ -133,7 +133,7 @@ else:
 
             "USER": "postgres",
 
-            "PASSWORD": "MET_TON_MOT_DE_PASSE_POSTGRES",
+            "PASSWORD": "seigneur123",
 
             "HOST": "localhost",
 
@@ -184,7 +184,7 @@ USE_TZ = True
 
 
 # =========================
-# STATIC
+# STATIC + CLOUDINARY STORAGE
 # =========================
 
 STATIC_URL = '/static/'
@@ -197,25 +197,32 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# =========================
+# CLOUDINARY
+# =========================
 
-STATICFILES_STORAGE = (
-    "whitenoise.storage.CompressedManifestStaticFilesStorage"
-)
-
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
+}
 
 
 # =========================
-# MEDIA
+# STORAGE DJANGO 6
 # =========================
 
- 
-MEDIA_URL = '/media/'
+STORAGES = {
 
-MEDIA_ROOT = BASE_DIR / 'media'
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
 
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
+}
 # =========================
 # DEFAULT PK
 # =========================
