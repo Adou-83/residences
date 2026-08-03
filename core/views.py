@@ -34,7 +34,7 @@ def residences(request):
 # DETAIL RESIDENCE + RESERVATION
 # =========================
 def residence_detail(request, id):
-
+    
     residence = get_object_or_404(Residence, id=id)
     reservations = Reservation.objects.filter(residence=residence)
 
@@ -50,29 +50,32 @@ def residence_detail(request, id):
 
     if request.method == "POST":
 
+        print("=" * 60)
+        print("POST reçu pour la résidence :", residence.nom)
+
         form = ReservationForm(request.POST)
+
+        print("Données POST :", request.POST)
 
         if form.is_valid():
 
-            date_arrivee = form.cleaned_data['date_arrivee']
-            date_depart = form.cleaned_data['date_depart']
+            print("✅ Formulaire valide")
 
-            # =========================
-            # VERIFICATION CONFLIT
-            # =========================
+            date_arrivee = form.cleaned_data["date_arrivee"]
+            date_depart = form.cleaned_data["date_depart"]
+
             conflit = Reservation.objects.filter(
                 residence=residence,
                 date_arrivee__lt=date_depart,
                 date_depart__gt=date_arrivee
             ).exists()
 
+            print("Conflit :", conflit)
+
             if conflit:
                 messages.error(request, "❌ Ces dates sont déjà réservées.")
-                return redirect('residence_detail', id=residence.id)
+                return redirect("residence_detail", id=residence.id)
 
-            # =========================
-            # SAUVEGARDE RESERVATION
-            # =========================
             reservation = form.save(commit=False)
             reservation.residence = residence
 
@@ -81,9 +84,9 @@ def residence_detail(request, id):
 
             reservation.save()
 
-            # =========================
-            # EMAIL NOTIFICATION
-            # =========================
+            print("✅ Réservation enregistrée")
+            print("ID :", reservation.id)
+
             send_mail(
                 subject="Nouvelle réservation",
                 message=f"""
@@ -105,16 +108,18 @@ Prix total : {reservation.prix_total} FCFA
             )
 
             messages.success(request, "✅ Réservation enregistrée avec succès")
-            return redirect('residence_detail', id=residence.id)
+            return redirect("residence_detail", id=residence.id)
 
-    return render(request, 'core/residence_detail.html', {
-        'residence': residence,
-        'form': form,
-        'reservations': reservations,
-        'dates_reservees': dates_reservees
+        else:
+            print("❌ Formulaire invalide")
+            print(form.errors)
+
+    return render(request, "core/residence_detail.html", {
+        "residence": residence,
+        "form": form,
+        "reservations": reservations,
+        "dates_reservees": dates_reservees,
     })
-
-
 # =========================
 # MES RESERVATIONS
 # =========================
