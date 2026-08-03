@@ -228,13 +228,21 @@ def deconnexion(request):
 # =========================
 # DASHBOARD
 # =========================
+ # =========================
+# DASHBOARD
+# =========================
+
 @staff_member_required
 def dashboard(request):
 
     reservations = Reservation.objects.all()
     residences = Residence.objects.all()
 
-    # Statistiques générales
+
+    # =========================
+    # STATISTIQUES GENERALES
+    # =========================
+
     total_reservations = reservations.count()
 
     total_confirmees = reservations.filter(
@@ -245,55 +253,93 @@ def dashboard(request):
         confirme=False
     ).count()
 
+
     revenus = sum(
-        r.prix_total or 0 
+        r.prix_total or 0
         for r in reservations
     )
 
 
-    # Performance par résidence
-    performance_residences = residences.annotate(
-        nombre_reservations=Count('reservation'),
-        confirmees=Count(
-            'reservation',
-            filter=Q(reservation__confirme=True)
-        ),
-        revenus=Sum(
-            'reservation__prix_total'
+
+    # =========================
+    # PERFORMANCE RESIDENCES
+    # =========================
+
+    performance_residences = []
+
+
+    for residence in residences:
+
+        reservations_residence = Reservation.objects.filter(
+            residence=residence
         )
-    )
+
+        performance_residences.append({
+
+            "nom": residence.nom,
+
+            "ville": residence.ville,
+
+            "nombre_reservations":
+                reservations_residence.count(),
+
+            "confirmees":
+                reservations_residence.filter(
+                    confirme=True
+                ).count(),
+
+            "revenus":
+                sum(
+                    r.prix_total or 0
+                    for r in reservations_residence
+                )
+
+        })
 
 
-    # Statistiques mensuelles
+
+    # =========================
+    # RESERVATIONS PAR MOIS
+    # =========================
+
     stats = (
         reservations
-        .annotate(month=ExtractMonth('date_reservation'))
+        .annotate(
+            month=ExtractMonth('date_reservation')
+        )
         .values('month')
-        .annotate(total=Count('id'))
+        .annotate(
+            total=Count('id')
+        )
         .order_by('month')
     )
 
 
     noms_mois = {
-        1: "Jan",
-        2: "Fév",
-        3: "Mar",
-        4: "Avr",
-        5: "Mai",
-        6: "Juin",
-        7: "Juil",
-        8: "Août",
-        9: "Sep",
-        10: "Oct",
-        11: "Nov",
-        12: "Déc"
+
+        1:"Jan",
+        2:"Fév",
+        3:"Mar",
+        4:"Avr",
+        5:"Mai",
+        6:"Juin",
+        7:"Juil",
+        8:"Août",
+        9:"Sep",
+        10:"Oct",
+        11:"Nov",
+        12:"Déc"
+
     }
 
 
     mois = [
-        noms_mois.get(s['month'])
+        noms_mois.get(
+            s['month']
+        )
         for s in stats
     ]
+
 
     totaux = [
         s['total']
@@ -301,25 +347,44 @@ def dashboard(request):
     ]
 
 
+
     return render(
         request,
         'core/dashboard.html',
         {
-            'total_reservations': total_reservations,
-            'total_confirmees': total_confirmees,
-            'total_attente': total_attente,
-            'total_residences': residences.count(),
-            'revenus': revenus,
 
-            'performance_residences': performance_residences,
+            'total_residences':
+                residences.count(),
 
-            'mois': mois,
-            'totaux': totaux,
+            'total_reservations':
+                total_reservations,
+
+            'total_confirmees':
+                total_confirmees,
+
+            'total_attente':
+                total_attente,
+
+            'revenus':
+                revenus,
+
+
+            'performance_residences':
+                performance_residences,
+
+
+            'mois':
+                mois,
+
+            'totaux':
+                totaux,
+
 
             'last_reservations':
                 reservations.order_by(
                     '-date_reservation'
                 )[:5],
+
         }
     )
     
