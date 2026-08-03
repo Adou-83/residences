@@ -1,0 +1,85 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+Clients
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container py-5">
+
+<h2 class="fw-bold mb-4">
+👥 Gestion des clients
+</h2>
+
+
+<div class="card shadow">
+
+<table class="table table-hover">
+
+<thead class="table-dark">
+
+<tr>
+<th>Client</th>
+<th>Email</th>
+<th>Téléphone</th>
+<th>Réservations</th>
+<th>Total dépensé</th>
+</tr>
+
+</thead>
+
+
+<tbody>
+
+{% for client in clients %}
+
+<tr>
+
+<td>
+{{ client.nom_client }}
+</td>
+
+
+<td>
+{{ client.email }}
+</td>
+
+
+<td>
+{{ client.telephone }}
+</td>
+
+
+<td>
+{{ client.nombre_reservations }}
+</td>
+
+
+<td>
+{{ client.total_depense|default:0 }} FCFA
+</td>
+
+
+</tr>
+
+{% empty %}
+
+<tr>
+<td colspan="5" class="text-center">
+Aucun client
+</td>
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

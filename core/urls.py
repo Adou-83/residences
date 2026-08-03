@@ -14,7 +14,7 @@ urlpatterns = [
     path('connexion/', views.connexion, name='connexion'),
     path('deconnexion/', views.deconnexion, name='deconnexion'),
     path('mes-reservations/', views.mes_reservations, name='mes_reservations'),
-
+    path('clients/', views.clients, name='clients'),
     # ================= BACKOFFICE =================
     path('backoffice/dashboard/', views.dashboard, name='dashboard'),
     path('backoffice/reservations/', views.reservations_admin, name='reservations_admin'),

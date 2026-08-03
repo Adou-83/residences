@@ -259,3 +259,29 @@ def dashboard(request):
         'totaux': totaux,
         'last_reservations': reservations.order_by('-date_reservation')[:5],
     })
+    
+    
+from django.db.models import Sum
+
+
+@staff_member_required
+def clients(request):
+
+    clients = (
+        Reservation.objects
+        .values(
+            'nom_client',
+            'email',
+            'telephone'
+        )
+        .annotate(
+            nombre_reservations=Count('id'),
+            total_depense=Sum('prix_total')
+        )
+        .order_by('-nombre_reservations')
+    )
+
+
+    return render(request, 'core/clients.html', {
+        'clients': clients
+    })
