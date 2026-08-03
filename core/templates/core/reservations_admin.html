@@ -1,128 +1,153 @@
 {% extends "core/base.html" %}
 
-{% block title %}Gestion des Réservations{% endblock %}
+{% block title %}Gestion des réservations{% endblock %}
 
 {% block content %}
 
-<div class="container">
+<div class="container py-5">
 
-<h2 class="mb-4">Gestion des Réservations</h2>
+    <h2 class="fw-bold mb-4">
+        📋 Gestion des réservations
+    </h2>
 
-<div class="table-responsive">
 
-<table class="table table-bordered table-striped align-middle">
+    <div class="card shadow">
 
-<thead class="table-dark">
-<tr>
-<th>Client</th>
-<th>Résidence</th>
-<th>Arrivée</th>
-<th>Départ</th>
-<th>Personnes</th>
-<th>Prix total</th>
-<th>Statut</th>
-<th>QR Code</th>
-<th>Actions</th>
-</tr>
-</thead>
+        <div class="card-body">
 
-<tbody>
+            <div class="table-responsive">
 
-{% for r in reservations %}
+                <table class="table table-hover align-middle">
 
-<tr>
+                    <thead class="table-dark">
 
-<td>
-<strong>{{ r.nom_client }}</strong><br>
-{{ r.email }}<br>
-{{ r.telephone }}
-</td>
+                        <tr>
+                            <th>Client</th>
+                            <th>Résidence</th>
+                            <th>Téléphone</th>
+                            <th>Dates</th>
+                            <th>Personnes</th>
+                            <th>Montant</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
 
-<td>{{ r.residence.nom }}</td>
+                    </thead>
 
-<td>{{ r.date_arrivee }}</td>
 
-<td>{{ r.date_depart }}</td>
+                    <tbody>
 
-<td>{{ r.personnes }}</td>
+                    {% for reservation in reservations %}
 
-<td>
-<strong>{{ r.prix_total }} FCFA</strong>
-</td>
+                        <tr>
 
-<td>
+                            <td>
+                                <strong>
+                                    {{ reservation.nom_client }}
+                                </strong>
+                                <br>
+                                <small>
+                                    {{ reservation.email }}
+                                </small>
+                            </td>
 
-{% if r.confirme %}
-<span class="badge bg-success">
-Confirmée
-</span>
-{% else %}
-<span class="badge bg-warning text-dark">
-En attente
-</span>
-{% endif %}
 
-</td>
+                            <td>
+                                {{ reservation.residence.nom }}
+                            </td>
 
-<td class="text-center">
 
-{% if r.qr_code %}
+                            <td>
+                                {{ reservation.telephone }}
+                            </td>
 
-<a href="{{ r.qr_code.url }}" target="_blank">
 
-<img
-src="{{ r.qr_code.url }}"
-alt="QR"
-style="width:80px;height:80px;"
-class="img-fluid rounded border">
+                            <td>
+                                {{ reservation.date_arrivee }}
+                                <br>
+                                au
+                                <br>
+                                {{ reservation.date_depart }}
+                            </td>
 
-</a>
 
-{% else %}
+                            <td>
+                                {{ reservation.personnes }}
+                            </td>
 
-<span class="text-danger">
-QR absent
-</span>
 
-{% endif %}
+                            <td>
+                                {{ reservation.prix_total }}
+                                FCFA
+                            </td>
 
-</td>
 
-<td>
+                            <td>
 
-{% if not r.confirme %}
+                                {% if reservation.confirme %}
 
-<a href="{% url 'confirmer_reservation' r.id %}"
-class="btn btn-success btn-sm mb-1">
-Confirmer
-</a>
+                                    <span class="badge bg-success">
+                                        Confirmée
+                                    </span>
 
-{% endif %}
+                                {% else %}
 
-<a href="{% url 'annuler_reservation' r.id %}"
-class="btn btn-danger btn-sm">
-Annuler
-</a>
+                                    <span class="badge bg-warning text-dark">
+                                        En attente
+                                    </span>
 
-</td>
+                                {% endif %}
 
-</tr>
+                            </td>
 
-{% empty %}
 
-<tr>
-<td colspan="9" class="text-center">
-Aucune réservation pour le moment
-</td>
-</tr>
+                            <td>
 
-{% endfor %}
+                                {% if not reservation.confirme %}
 
-</tbody>
+                                <a href="{% url 'confirmer_reservation' reservation.id %}"
+                                   class="btn btn-success btn-sm">
+                                    ✔
+                                </a>
 
-</table>
+                                {% endif %}
 
-</div>
+
+                                <a href="{% url 'annuler_reservation' reservation.id %}"
+                                   class="btn btn-danger btn-sm">
+                                    ✖
+                                </a>
+
+                            </td>
+
+
+                        </tr>
+
+
+                    {% empty %}
+
+                        <tr>
+                            <td colspan="8" class="text-center">
+
+                                Aucune réservation
+
+                            </td>
+                        </tr>
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
