@@ -7,7 +7,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mail
 from django.db.models.functions import ExtractMonth
 from django.db.models import Count
-
+from django.db.models import Count, Sum, Q
 from .models import Residence, Reservation
 from .forms import ReservationForm, InscriptionForm
 
@@ -234,6 +234,37 @@ def dashboard(request):
     reservations = Reservation.objects.all()
     residences = Residence.objects.all()
 
+    # Statistiques générales
+    total_reservations = reservations.count()
+
+    total_confirmees = reservations.filter(
+        confirme=True
+    ).count()
+
+    total_attente = reservations.filter(
+        confirme=False
+    ).count()
+
+    revenus = sum(
+        r.prix_total or 0 
+        for r in reservations
+    )
+
+
+    # Performance par résidence
+    performance_residences = residences.annotate(
+        nombre_reservations=Count('reservation'),
+        confirmees=Count(
+            'reservation',
+            filter=Q(reservation__confirme=True)
+        ),
+        revenus=Sum(
+            'reservation__prix_total'
+        )
+    )
+
+
+    # Statistiques mensuelles
     stats = (
         reservations
         .annotate(month=ExtractMonth('date_reservation'))
@@ -242,26 +273,58 @@ def dashboard(request):
         .order_by('month')
     )
 
+
     noms_mois = {
-        1: "Jan", 2: "Fév", 3: "Mar", 4: "Avr",
-        5: "Mai", 6: "Juin", 7: "Juil", 8: "Août",
-        9: "Sep", 10: "Oct", 11: "Nov", 12: "Déc"
+        1: "Jan",
+        2: "Fév",
+        3: "Mar",
+        4: "Avr",
+        5: "Mai",
+        6: "Juin",
+        7: "Juil",
+        8: "Août",
+        9: "Sep",
+        10: "Oct",
+        11: "Nov",
+        12: "Déc"
     }
 
-    mois = [noms_mois.get(s['month']) for s in stats]
-    totaux = [s['total'] for s in stats]
 
-    return render(request, 'core/dashboard.html', {
-        'total_reservations': reservations.count(),
-        'total_residences': residences.count(),
-        'revenus': sum(r.prix_total or 0 for r in reservations),
-        'mois': mois,
-        'totaux': totaux,
-        'last_reservations': reservations.order_by('-date_reservation')[:5],
-    })
+    mois = [
+        noms_mois.get(s['month'])
+        for s in stats
+    ]
+
+    totaux = [
+        s['total']
+        for s in stats
+    ]
+
+
+    return render(
+        request,
+        'core/dashboard.html',
+        {
+            'total_reservations': total_reservations,
+            'total_confirmees': total_confirmees,
+            'total_attente': total_attente,
+            'total_residences': residences.count(),
+            'revenus': revenus,
+
+            'performance_residences': performance_residences,
+
+            'mois': mois,
+            'totaux': totaux,
+
+            'last_reservations':
+                reservations.order_by(
+                    '-date_reservation'
+                )[:5],
+        }
+    )
     
     
-from django.db.models import Sum
+ 
 
 
 @staff_member_required

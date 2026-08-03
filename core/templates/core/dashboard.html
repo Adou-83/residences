@@ -1,253 +1,387 @@
 {% extends "core/base.html" %}
 
-{% block title %}
-Dashboard
-{% endblock %}
+{% block title %}Dashboard{% endblock %}
+
 
 {% block content %}
 
-<div class="container py-5">
+<div class="container py-4">
 
-    <!-- TITRE -->
-    <div class="d-flex justify-content-between align-items-center mb-5">
 
-        <div>
+<h2 class="fw-bold mb-4">
+📊 Tableau de bord Résidences LAMCY
+</h2>
 
-            <h2 class="fw-bold">
-                🏠 Dashboard Propriétaire
-            </h2>
 
-            <p class="text-muted">
-                Gérez vos résidences et réservations
-            </p>
+<!-- ======================
+     CARTES STATISTIQUES
+======================= -->
 
-        </div>
+<div class="row g-4 mb-4">
 
-    </div>
 
-    <!-- STATS -->
-    <div class="row g-4">
+<div class="col-md-3">
+<div class="card shadow border-0 p-3 text-center">
 
-        <!-- RESIDENCES -->
-        <div class="col-md-4">
+<h6>🏠 Résidences</h6>
 
-            <div class="card shadow-lg border-0 rounded-4 p-4">
+<h2 class="fw-bold">
+{{ total_residences }}
+</h2>
 
-                <div class="d-flex justify-content-between align-items-center">
+</div>
+</div>
 
-                    <div>
 
-                        <h6 class="text-muted">
-                            Résidences
-                        </h6>
 
-                        <h2 class="fw-bold">
-                            {{ total_residences }}
-                        </h2>
+<div class="col-md-3">
+<div class="card shadow border-0 p-3 text-center">
 
-                    </div>
+<h6>📅 Réservations</h6>
 
-                    <div class="fs-1">
-                        🏠
-                    </div>
+<h2 class="fw-bold">
+{{ total_reservations }}
+</h2>
 
-                </div>
+</div>
+</div>
 
-            </div>
 
-        </div>
 
-        <!-- RESERVATIONS -->
-        <div class="col-md-4">
 
-            <div class="card shadow-lg border-0 rounded-4 p-4">
+<div class="col-md-3">
+<div class="card shadow border-0 p-3 text-center">
 
-                <div class="d-flex justify-content-between align-items-center">
+<h6>✅ Confirmées</h6>
 
-                    <div>
+<h2 class="fw-bold text-success">
+{{ total_confirmees }}
+</h2>
 
-                        <h6 class="text-muted">
-                            Réservations
-                        </h6>
+</div>
+</div>
 
-                        <h2 class="fw-bold">
-                            {{ total_reservations }}
-                        </h2>
 
-                    </div>
 
-                    <div class="fs-1">
-                        📅
-                    </div>
 
-                </div>
+<div class="col-md-3">
+<div class="card shadow border-0 p-3 text-center">
 
-            </div>
+<h6>💰 Revenus</h6>
 
-        </div>
+<h2 class="fw-bold">
+{{ revenus }} FCFA
+</h2>
 
-        <!-- REVENUS -->
-        <div class="col-md-4">
+</div>
+</div>
 
-            <div class="card shadow-lg border-0 rounded-4 p-4 bg-dark text-white">
-
-                <div class="d-flex justify-content-between align-items-center">
-
-                    <div>
-
-                        <h6>
-                            Revenus estimés
-                        </h6>
-
-                        <h2 class="fw-bold">
-                            {{ revenus }} FCFA
-                        </h2>
-
-                    </div>
-
-                    <div class="fs-1">
-                        💰
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- GRAPHIQUE -->
-    <div class="card border-0 shadow-lg rounded-4 mt-5">
-
-        <div class="card-body">
-
-            <h4 class="fw-bold mb-4">
-                📈 Réservations par mois
-            </h4>
-
-            <canvas id="reservationsChart"></canvas>
-
-        </div>
-
-    </div>
-
-    <!-- TABLEAU -->
-    <div class="card border-0 shadow-lg rounded-4 mt-5">
-
-        <div class="card-body">
-
-            <div class="d-flex justify-content-between align-items-center mb-4">
-
-                <h4 class="fw-bold">
-                    📋 Dernières réservations
-                </h4>
-
-            </div>
-
-            <div class="table-responsive">
-
-                <table class="table align-middle">
-
-                    <thead class="table-dark">
-
-                        <tr>
-
-                            <th>Client</th>
-                            <th>Résidence</th>
-                            <th>Arrivée</th>
-                            <th>Départ</th>
-                            <th>Personnes</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        {% for r in last_reservations %}
-
-                        <tr>
-
-                            <td>
-                                {{ r.nom_client }}
-                            </td>
-
-                            <td>
-                                {{ r.residence.nom }}
-                            </td>
-
-                            <td>
-                                {{ r.date_arrivee }}
-                            </td>
-
-                            <td>
-                                {{ r.date_depart }}
-                            </td>
-
-                            <td>
-                                {{ r.personnes }}
-                            </td>
-
-                        </tr>
-
-                        {% empty %}
-
-                        <tr>
-
-                            <td colspan="5" class="text-center text-muted">
-
-                                Aucune réservation
-
-                            </td>
-
-                        </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
 
 </div>
 
-<!-- CHART JS -->
+
+
+
+
+<!-- ======================
+ PERFORMANCE RESIDENCES
+======================= -->
+
+
+<div class="card shadow mb-4">
+
+<div class="card-header bg-dark text-white">
+
+🏠 Performance des résidences
+
+</div>
+
+
+<div class="card-body">
+
+
+<div class="table-responsive">
+
+
+<table class="table table-striped">
+
+
+<thead>
+
+<tr>
+
+<th>Résidence</th>
+<th>Ville</th>
+<th>Réservations</th>
+<th>Confirmées</th>
+<th>Revenus</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+{% for r in performance_residences %}
+
+
+<tr>
+
+<td>
+{{ r.nom }}
+</td>
+
+
+<td>
+{{ r.ville }}
+</td>
+
+
+<td>
+{{ r.nombre_reservations }}
+</td>
+
+
+<td>
+{{ r.confirmees }}
+</td>
+
+
+<td>
+{{ r.revenus|default:0 }} FCFA
+</td>
+
+
+</tr>
+
+
+{% empty %}
+
+
+<tr>
+
+<td colspan="5" class="text-center">
+
+Aucune donnée
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<!-- ======================
+ DERNIERES RESERVATIONS
+======================= -->
+
+
+<div class="card shadow mb-4">
+
+
+<div class="card-header bg-primary text-white">
+
+📋 Dernières réservations
+
+</div>
+
+
+
+<div class="card-body">
+
+
+<table class="table">
+
+
+<thead>
+
+<tr>
+
+<th>Client</th>
+<th>Résidence</th>
+<th>Date</th>
+<th>Statut</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+{% for r in last_reservations %}
+
+
+<tr>
+
+
+<td>
+{{ r.nom_client }}
+</td>
+
+
+<td>
+{{ r.residence.nom }}
+</td>
+
+
+<td>
+{{ r.date_arrivee }}
+</td>
+
+
+
+<td>
+
+{% if r.confirme %}
+
+<span class="badge bg-success">
+Confirmée
+</span>
+
+{% else %}
+
+<span class="badge bg-warning">
+En attente
+</span>
+
+{% endif %}
+
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- ======================
+ GRAPHIQUE
+======================= -->
+
+
+<div class="card shadow">
+
+
+<div class="card-header">
+
+📈 Evolution des réservations
+
+</div>
+
+
+
+<div class="card-body">
+
+
+<canvas id="reservationChart"></canvas>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
 <script>
 
-const ctx = document.getElementById('reservationsChart');
+
+const ctx = document.getElementById(
+    'reservationChart'
+);
+
 
 new Chart(ctx, {
 
-    type: 'bar',
 
-    data: {
+type:'bar',
 
-        labels: {{ mois|safe }},
 
-        datasets: [{
-            label: 'Réservations',
-            data: {{ totaux|safe }},
-            borderWidth: 2
-        }]
-    },
+data:{
 
-    options: {
 
-        responsive: true
+labels:
+{{ mois|safe }},
 
-    }
+
+datasets:[{
+
+label:'Réservations',
+
+data:
+{{ totaux|safe }},
+
+}]
+
+
+},
+
+
+options:{
+
+responsive:true
+
+}
+
 
 });
 
+
 </script>
+
 
 {% endblock %}
