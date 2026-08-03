@@ -151,18 +151,78 @@ def reservations_admin(request):
         'reservations': reservations
     })
 
-
 @staff_member_required
 def confirmer_reservation(request, id):
 
-    reservation = get_object_or_404(Reservation, id=id)
+    reservation = get_object_or_404(
+        Reservation,
+        id=id
+    )
+
     reservation.confirme = True
     reservation.save()
 
-    messages.success(request, "Réservation confirmée")
-    return redirect('reservations_admin')
+
+    # =========================
+    # NOTIFICATION CLIENT
+    # =========================
+
+    if reservation.email:
+
+        send_mail(
+
+            subject="Confirmation de votre réservation - Résidences LAMCY",
+
+            message=f"""
+Bonjour {reservation.nom_client},
+
+Votre réservation est maintenant confirmée.
+
+🏠 Résidence :
+{reservation.residence.nom}
+
+📍 Ville :
+{reservation.residence.ville}
+
+📅 Arrivée :
+{reservation.date_arrivee}
+
+📅 Départ :
+{reservation.date_depart}
+
+👥 Personnes :
+{reservation.personnes}
+
+💰 Montant :
+{reservation.prix_total} FCFA
 
 
+Merci pour votre confiance.
+
+Résidences LAMCY
+📞 2250778485274
+""",
+
+            from_email="contact@residences.com",
+
+            recipient_list=[
+                reservation.email
+            ],
+
+            fail_silently=True,
+        )
+
+
+    messages.success(
+        request,
+        "Réservation confirmée et notification envoyée"
+    )
+
+    return redirect(
+        'reservations_admin'
+    )
+    
+    
 @staff_member_required
 def annuler_reservation(request, id):
 
