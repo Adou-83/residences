@@ -1,322 +1,973 @@
 /* =========================
    GOOGLE FONT
 ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 
 /* =========================
    GLOBAL
 ========================= */
-body{
-    background:#f5f7fb;
-    font-family:'Poppins', sans-serif;
-    color:#1f2937;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+
+body{
+
+    background:#f5f7fb;
+
+    font-family:'Poppins',sans-serif;
+
+    color:#1f2937;
+
+    -webkit-font-smoothing:antialiased;
+
+    overflow-x:hidden;
+
+}
+
 
 a{
+
     text-decoration:none;
-    transition:0.3s;
+
+    transition:.3s;
+
 }
 
+
 /* =========================
-   NAVBAR (GLASS EFFECT)
+   NAVBAR
 ========================= */
+
 .navbar{
-    background:rgba(15,23,42,0.75);
-    backdrop-filter: blur(14px);
-    box-shadow:0 8px 25px rgba(0,0,0,0.25);
-    padding:12px 0;
-    transition:0.3s;
+
+    background:rgba(15,23,42,.82);
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:0 5px 20px rgba(0,0,0,.18);
+
+    padding:8px 0;
+
+    transition:.3s;
+
 }
+
 
 .navbar-brand{
-    font-size:22px;
+
+    font-size:21px;
+
     font-weight:700;
-    letter-spacing:0.5px;
+
+    letter-spacing:.3px;
+
     color:white !important;
+
 }
+
 
 .logo-navbar{
-    width:42px;
-    height:42px;
+
+    width:38px;
+
+    height:38px;
+
     border-radius:50%;
+
     object-fit:cover;
+
     margin-right:10px;
+
+    border:2px solid rgba(255,255,255,.4);
+
 }
+
+
 
 .nav-link{
-    color:#fff !important;
-    margin-left:12px;
+
+    color:white !important;
+
+    margin-left:8px;
+
     font-weight:500;
+
+    padding:8px 12px !important;
+
+    border-radius:8px;
+
 }
+
 
 .nav-link:hover{
+
     color:#facc15 !important;
-    transform:translateY(-2px);
+
+    background:rgba(255,255,255,.07);
+
 }
+
+
 
 /* =========================
-   HERO (VERSION PREMIUM)
+   HERO
 ========================= */
+
+
 .hero{
-    height:90vh;
+
+    height:88vh;
+
     background:
-        linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.35)),
-        url("../images/barnieres/barniere.jpg");
+
+    linear-gradient(
+        to right,
+        rgba(0,0,0,.70),
+        rgba(0,0,0,.35)
+    ),
+
+    url("../images/barnieres/barniere.jpg");
+
+
     background-size:cover;
+
     background-position:center;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     text-align:center;
+
     color:white;
-    position:relative;
+
 }
+
+
 
 .hero-content{
+
     max-width:800px;
+
     padding:20px;
+
     animation:fadeInUp 1s ease;
+
 }
+
+
 
 .hero h1{
-    font-size:64px;
+
+    font-size:58px;
+
     font-weight:800;
-    letter-spacing:1px;
+
+    letter-spacing:.5px;
+
 }
+
+
 
 .hero p{
-    font-size:20px;
+
+    font-size:19px;
+
     margin-top:15px;
-    opacity:0.9;
+
+    opacity:.92;
+
 }
 
-/* Animation */
+
+
+
 @keyframes fadeInUp{
+
     from{
+
         opacity:0;
+
         transform:translateY(30px);
+
     }
+
+
     to{
+
         opacity:1;
+
         transform:translateY(0);
+
     }
+
 }
+
+
 
 /* =========================
    BUTTONS
 ========================= */
+
+
 .btn{
-    border-radius:30px;
-    padding:10px 25px;
+
+    border-radius:16px;
+
+    padding:8px 18px;
+
+    font-size:15px;
+
     font-weight:600;
-    transition:0.3s;
+
+    transition:.3s;
+
 }
+
+
 
 .btn-primary{
+
     background:#2563eb;
+
     border:none;
+
 }
+
 
 .btn-primary:hover{
+
     transform:translateY(-2px);
-    box-shadow:0 10px 20px rgba(37,99,235,0.3);
+
+    box-shadow:0 10px 20px rgba(37,99,235,.25);
+
 }
+
+
 
 .btn-warning{
+
     background:linear-gradient(45deg,#facc15,#f59e0b);
+
     border:none;
+
     color:#111;
+
 }
+
 
 .btn-warning:hover{
+
     transform:translateY(-2px);
+
 }
+
+
 
 .btn-success{
+
     background:#22c55e;
+
     border:none;
+
 }
+
 
 .btn-success:hover{
+
     transform:translateY(-2px);
+
 }
 
+
 /* =========================
-   SECTIONS TITRES
+   TITRES SECTIONS
 ========================= */
+
 .section-title{
+
     text-align:center;
+
     margin-bottom:40px;
+
 }
+
 
 .section-title h2{
+
     font-size:34px;
+
     font-weight:700;
+
+    color:#111827;
+
 }
+
 
 .section-title p{
+
     color:#6b7280;
+
 }
+
+
 
 /* =========================
-   CARDS (RESIDENCES)
+   CARDS RESIDENCES
 ========================= */
+
+
 .card{
+
     border:none;
-    border-radius:18px;
+
+    border-radius:16px;
+
     overflow:hidden;
+
     background:white;
-    box-shadow:0 8px 25px rgba(0,0,0,0.06);
-    transition:0.3s;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+
+    transition:.35s;
+
 }
+
+
 
 .card:hover{
-    transform:translateY(-10px) scale(1.01);
-    box-shadow:0 15px 35px rgba(0,0,0,0.12);
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+
 }
+
+
 
 .card img{
+
     height:240px;
+
+    width:100%;
+
     object-fit:cover;
-    transition:0.4s;
+
+    transition:.4s;
+
 }
 
+
+
 .card:hover img{
-    transform:scale(1.05);
+
+    transform:scale(1.04);
+
 }
+
+
+
+.card-body{
+
+    padding:22px;
+
+}
+
+
+
+.card-title{
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
 
 /* =========================
    FORMULAIRES
 ========================= */
+
+
 .form-control{
+
     border-radius:12px;
+
     border:1px solid #e5e7eb;
-    padding:10px;
+
+    padding:9px 12px;
+
+    font-size:15px;
+
 }
+
+
 
 .form-control:focus{
+
     border-color:#facc15;
-    box-shadow:0 0 0 3px rgba(250,204,21,0.2);
+
+    box-shadow:0 0 0 3px rgba(250,204,21,.20);
+
 }
+
+
+
 
 /* =========================
-   STATS
+   STATISTIQUES DASHBOARD
 ========================= */
+
+
 .stats{
-    background:#ffffff;
-    padding:50px 0;
+
+    background:white;
+
+    padding:45px 0;
+
     text-align:center;
+
 }
+
+
+
+.stats .card{
+
+    padding:20px;
+
+}
+
+
 
 .stats h2{
-    font-size:36px;
+
+    font-size:34px;
+
     font-weight:800;
+
+    color:#111827;
+
 }
 
+
+
 .stats p{
+
     color:#6b7280;
+
 }
+
+
+
+/* =========================
+   TABLEAUX DASHBOARD
+========================= */
+
+
+.table{
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}
+
+
+
+.table thead{
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+
+.table th{
+
+    font-weight:600;
+
+}
+
+
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+
 
 /* =========================
    BADGES
 ========================= */
+
+
 .badge{
-    padding:8px 12px;
+
+    padding:7px 12px;
+
     border-radius:20px;
+
+    font-weight:500;
+
 }
+
+
 
 /* =========================
-   WHATSAPP BUTTON
+   ALERTS
 ========================= */
-.whatsapp-btn{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    color:white;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    z-index:999;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    transition:0.3s;
+
+
+.alert{
+
+    border-radius:12px;
+
+    border:none;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+
 }
 
-.whatsapp-btn:hover{
-    transform:scale(1.15);
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+
+.whatsapp-btn{
+
+    position:fixed;
+
+    bottom:20px;
+
+    right:20px;
+
+    width:58px;
+
+    height:58px;
+
+    background:#25D366;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    z-index:999;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    transition:.3s;
+
 }
+
+
+
+.whatsapp-btn:hover{
+
+    transform:scale(1.12);
+
+}
+
+
 
 /* =========================
    FOOTER
 ========================= */
+
+
 .footer-modern{
+
     background:#0f172a;
+
     color:white;
+
     padding:50px 0;
+
     margin-top:60px;
+
 }
+
+
 
 .footer-modern p{
-    color:#cbd5e1;
+    color:#e5e7eb;
+    line-height:1.8;
 }
+
+
 
 .footer-links{
+
     list-style:none;
+
     padding:0;
+
 }
+
+
 
 .footer-links li{
+
     margin-bottom:10px;
+
 }
 
+
+
 .footer-links a{
-    color:#cbd5e1;
+    color:#f8fafc;
+    font-weight:500;
+}
+
+.footer-modern h4,
+.footer-modern h5{
+    color:#ffffff;
+    font-weight:700;
+    margin-bottom:15px;
 }
 
 .footer-links a:hover{
+
     color:#facc15;
+
     padding-left:5px;
+
 }
+
+/* Correction texte description footer */
+
+.footer-modern .text-muted{
+
+    color:#e2e8f0 !important;
+
+    opacity:1;
+
+}
+
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE TABLETTE
 ========================= */
+
 @media(max-width:992px){
-    .hero h1{
-        font-size:44px;
-    }
-}
 
-@media(max-width:768px){
     .hero{
-        height:70vh;
+
+        height:75vh;
+
     }
 
+
     .hero h1{
-        font-size:32px;
+
+        font-size:44px;
+
     }
+
 
     .hero p{
-        font-size:16px;
+
+        font-size:17px;
+
     }
+
+
+    .navbar-brand{
+
+        font-size:19px;
+
+    }
+
+
+    .section-title h2{
+
+        font-size:30px;
+
+    }
+
 
     .card img{
-        height:200px;
+
+        height:220px;
+
     }
+
+
 }
 
-@media(max-width:576px){
-    .hero h1{
-        font-size:26px;
+
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+
+@media(max-width:768px){
+
+
+    body{
+
+        font-size:14px;
+
     }
 
-    .hero p{
-        font-size:14px;
+
+    .navbar{
+
+        padding:6px 0;
+
     }
+
+
+    .navbar-brand{
+
+        font-size:17px;
+
+    }
+
+
+    .logo-navbar{
+
+        width:32px;
+
+        height:32px;
+
+    }
+
+
+
+    .nav-link{
+
+        margin-left:0;
+
+        padding:10px !important;
+
+    }
+
+
+
+    .hero{
+
+        height:70vh;
+
+    }
+
+
+    .hero h1{
+
+        font-size:32px;
+
+        line-height:1.2;
+
+    }
+
+
+    .hero p{
+
+        font-size:15px;
+
+    }
+
+
+
+    .hero-content{
+
+        padding:15px;
+
+    }
+
+
+
+    .btn{
+
+        padding:8px 15px;
+
+        font-size:14px;
+
+    }
+
+
+
+    .section-title{
+
+        margin-bottom:25px;
+
+    }
+
+
+
+    .section-title h2{
+
+        font-size:26px;
+
+    }
+
+
+
+    .card{
+
+        margin-bottom:20px;
+
+    }
+
+
+
+    .card img{
+
+        height:200px;
+
+    }
+
+
+
+    .card-body{
+
+        padding:18px;
+
+    }
+
+
+
+    .table{
+
+        font-size:13px;
+
+    }
+
+
+    .table th,
+    .table td{
+
+        white-space:nowrap;
+
+    }
+
+
+
+    .whatsapp-btn{
+
+        width:52px;
+
+        height:52px;
+
+        font-size:25px;
+
+        bottom:15px;
+
+        right:15px;
+
+    }
+
+
+
+    .footer-modern{
+
+        text-align:center;
+
+    }
+
+
+}
+
+
+
+/* =========================
+   PETITS TELEPHONES
+========================= */
+
+
+@media(max-width:576px){
+
+
+    .hero h1{
+
+        font-size:26px;
+
+    }
+
+
+
+    .hero p{
+
+        font-size:14px;
+
+    }
+
+
+
+    .btn{
+
+        width:100%;
+
+        margin-bottom:8px;
+
+    }
+
+
+
+    .section-title h2{
+
+        font-size:23px;
+
+    }
+
+
+
+    .table{
+
+        display:block;
+
+        overflow-x:auto;
+
+    }
+
+
+
+}
+
+
+
+/* =========================
+   ANIMATIONS FINITIONS
+========================= */
+
+
+.card,
+.btn,
+.nav-link{
+
+    will-change:transform;
+
+}
+
+
+
+/* Smooth scrolling */
+
+html{
+
+    scroll-behavior:smooth;
+
 }
