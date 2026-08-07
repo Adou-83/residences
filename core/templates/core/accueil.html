@@ -3,39 +3,39 @@
 
 {% block content %}
 
-<!-- ================= HERO BANNIERE ================= -->
-<section class="position-relative">
+<!-- HERO -->
 
-    <img src="{% static 'core/images/barnieres/barniere.jpg' %}"
-         class="w-100"
-         style="height: 650px; object-fit: cover;">
+<section class="hero">
 
-    <div class="position-absolute top-0 start-0 w-100 h-100"
-         style="background: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.3));">
-    </div>
+    <div class="hero-content">
 
-    <div class="position-absolute top-50 start-50 translate-middle text-center text-white px-3">
-
-        <h1 class="display-3 fw-bold">
-            Résidences Haut Standing
+        <h1>
+            Résidences Meublées Haut Standing
         </h1>
 
-        <p class="lead fs-3 mt-3">
-            Luxe • Confort • Sécurité • Disponibilité immédiate
+        <p class="mt-4">
+
+            Séjournez dans des résidences modernes,
+            confortables, climatisées et entièrement équipées
+            à Abidjan.
+
         </p>
 
-        <div class="mt-4">
+        <div class="mt-5">
 
             <a href="{% url 'residences' %}"
-               class="btn btn-warning btn-lg px-4 me-2">
+               class="btn btn-warning me-3">
 
                 Voir les résidences
+
             </a>
 
-            <a href="https://wa.me/22500000000"
-               class="btn btn-success btn-lg px-4">
+            <a href="https://wa.me/2250778485274"
+               class="btn btn-success"
+               target="_blank">
 
-                Réserver WhatsApp
+                Réserver sur WhatsApp
+
             </a>
 
         </div>
@@ -44,183 +44,258 @@
 
 </section>
 
-<!-- ================= STATS ================= -->
-<section class="py-5 bg-light">
 
-    <div class="container text-center">
 
-        <div class="row">
+<!-- NOS CHIFFRES -->
 
-            <div class="col-md-3">
-                <h2 class="fw-bold text-dark">50+</h2>
-                <p>Résidences</p>
-            </div>
+<section class="stats py-5">
 
-            <div class="col-md-3">
-                <h2 class="fw-bold text-dark">120+</h2>
-                <p>Clients satisfaits</p>
-            </div>
+<div class="container">
 
-            <div class="col-md-3">
-                <h2 class="fw-bold text-dark">24/7</h2>
-                <p>Service disponible</p>
-            </div>
+<div class="row text-center">
 
-            <div class="col-md-3">
-                <h2 class="fw-bold text-dark">100%</h2>
-                <p>Sécurité garantie</p>
-            </div>
+<div class="col-md-3">
 
-        </div>
+<h2>50+</h2>
 
-    </div>
+<p>Résidences</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>120+</h2>
+
+<p>Clients satisfaits</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>24/7</h2>
+
+<p>Assistance</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>100%</h2>
+
+<p>Sécurité</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
-<!-- ================= PRESENTATION ================= -->
+
+
+<!-- PRESENTATION -->
+
 <section class="container py-5">
 
-    <div class="row align-items-center">
+<div class="row align-items-center">
 
-        <div class="col-md-6">
+<div class="col-lg-6">
 
-            <h2 class="fw-bold mb-4">
-                Bienvenue chez Résidences Meublées LAMCY
-            </h2>
+<h2 class="fw-bold mb-4">
 
-            <p class="lead">
-                Nous proposons des résidences meublées modernes, élégantes et sécurisées pour vos séjours personnels et professionnels.
-            </p>
+Bienvenue chez Résidences LAMCY
 
-            <p>
-                Réservez rapidement votre logement et profitez d’un confort haut de gamme au cœur de la ville.
-            </p>
+</h2>
 
-            <a href="{% url 'residences' %}"
-               class="btn btn-dark px-4 mt-3">
+<p class="lead">
 
-               Explorer les résidences
+Nous proposons des appartements
+haut standing destinés aussi bien
+aux particuliers qu'aux professionnels.
 
-            </a>
+</p>
 
-        </div>
+<p>
 
-        <div class="col-md-6">
+Chaque résidence dispose notamment :
 
-            <img src="{% static 'core/images/residences/flyer.jpg' %}"
-                 class="img-fluid rounded shadow-lg">
-        </div>
+</p>
 
-    </div>
+<ul class="mt-4">
 
-</section>
+<li>✅ Wi-Fi Haut Débit</li>
 
-<!-- ================= SERVICES ================= -->
-<section class="bg-white py-5">
+<li>✅ Climatisation</li>
 
-    <div class="container">
+<li>✅ Canal+</li>
 
-        <div class="text-center mb-5">
+<li>✅ Cuisine équipée</li>
 
-            <h2 class="fw-bold">
-                Pourquoi nous choisir ?
-            </h2>
+<li>✅ Parking</li>
 
-            <p class="text-muted">
-                Une expérience de location premium à Abidjan
-            </p>
+<li>✅ Sécurité 24h/24</li>
 
-        </div>
+</ul>
 
-        <div class="row text-center g-4">
+<a href="{% url 'residences' %}"
 
-            <div class="col-md-4">
+class="btn btn-dark mt-4">
 
-                <div class="p-4 shadow rounded h-100">
-                    <div style="font-size:40px;">🏠</div>
-                    <h4 class="mt-3">Résidences Premium</h4>
-                    <p>Appartements modernes, propres et équipés.</p>
-                </div>
+Explorer les résidences
 
-            </div>
+</a>
 
-            <div class="col-md-4">
+</div>
 
-                <div class="p-4 shadow rounded h-100">
-                    <div style="font-size:40px;">🔒</div>
-                    <h4 class="mt-3">Sécurité 24h/24</h4>
-                    <p>Résidences surveillées et sécurisées.</p>
-                </div>
 
-            </div>
 
-            <div class="col-md-4">
+<div class="col-lg-6">
 
-                <div class="p-4 shadow rounded h-100">
-                    <div style="font-size:40px;">⚡</div>
-                    <h4 class="mt-3">Réservation Rapide</h4>
-                    <p>Réservez en quelques clics ou sur WhatsApp.</p>
-                </div>
+<img
 
-            </div>
+src="{% static 'core/images/residences/flyer.jpg' %}"
 
-        </div>
+class="img-fluid rounded shadow-lg">
 
-    </div>
+</div>
+
+</div>
 
 </section>
 
-<!-- ================= RESIDENCES VEDETTES ================= -->
+<!-- POURQUOI NOUS CHOISIR -->
+
 <section class="container py-5">
 
-    <div class="text-center mb-4">
-        <h2 class="fw-bold">Résidences en vedette</h2>
-        <p class="text-muted">Les meilleurs logements disponibles</p>
+    <div class="section-title">
+
+        <h2>Pourquoi choisir Résidences LAMCY ?</h2>
+
+        <p>
+            Tout le confort d'un hôtel avec la liberté d'une résidence privée.
+        </p>
+
     </div>
 
     <div class="row g-4">
 
         <div class="col-md-4">
 
-            <div class="card shadow border-0">
-                <img src="{% static 'core/images/residences/salon.jpg' %}"
-                     class="card-img-top">
+            <div class="card text-center h-100">
 
                 <div class="card-body">
-                    <h5>Deux chambres salon</h5>
-                    <p>3 pièces • wiffi • Luxe</p>
-                    <strong>65 000 FCFA / nuit</strong>
+
+                    <div class="display-5 mb-3">📶</div>
+
+                    <h4>Wi-Fi Haut Débit</h4>
+
+                    <p>
+                        Internet rapide et illimité dans toutes les résidences.
+                    </p>
+
                 </div>
-            </div> 
 
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card shadow border-0">
-                <img src="{% static 'core/images/residences/villa1.jpg' %}"
-                     class="card-img-top">
-
-                <div class="card-body">
-                    <h5>Studio Angre</h5>
-                    <p>Moderne • WiFi • Climatisation</p>
-                    <strong>25 000 FCFA / nuit</strong>
-                </div>
             </div>
 
         </div>
 
         <div class="col-md-4">
 
-            <div class="card shadow border-0">
-                <img src="{% static 'core/images/residences/salon.jpg' %}"
-                     class="card-img-top">
+            <div class="card text-center h-100">
 
                 <div class="card-body">
-                    <h5>Appartement Marcory</h5>
-                    <p>2 pièces • Parking • Sécurité</p>
-                    <strong>100 000 FCFA / nuit</strong>
+
+                    <div class="display-5 mb-3">❄️</div>
+
+                    <h4>Climatisation</h4>
+
+                    <p>
+                        Chambres et salons entièrement climatisés.
+                    </p>
+
                 </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <div class="display-5 mb-3">🚗</div>
+
+                    <h4>Parking</h4>
+
+                    <p>
+                        Parking sécurisé réservé aux résidents.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <div class="display-5 mb-3">📺</div>
+
+                    <h4>Canal+</h4>
+
+                    <p>
+                        Télévision avec chaînes Canal+ incluses.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <div class="display-5 mb-3">🛡️</div>
+
+                    <h4>Sécurité 24h/24</h4>
+
+                    <p>
+                        Résidences surveillées jour et nuit.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card text-center h-100">
+
+                <div class="card-body">
+
+                    <div class="display-5 mb-3">⚡</div>
+
+                    <h4>Réservation rapide</h4>
+
+                    <p>
+                        Confirmation rapide via le site ou WhatsApp.
+                    </p>
+
+                </div>
+
             </div>
 
         </div>
@@ -229,20 +304,262 @@
 
 </section>
 
-<!-- ================= CTA ================= -->
-<section class="text-center py-5 bg-dark text-white">
 
-    <h2>Réservez votre résidence maintenant</h2>
-    <p>Contact rapide sur WhatsApp pour disponibilité immédiate</p>
 
-    <a href="https://wa.me/225 0778485274"
-   class="btn btn-success btn-lg mt-3"
-   target="_blank">
+<!-- RESIDENCES EN VEDETTE -->
 
-   📲 +225 0778485274
+<section class="container py-5">
+
+    <div class="section-title">
+
+        <h2>Résidences en vedette</h2>
+
+        <p>
+            Découvrez quelques-unes de nos meilleures résidences.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-4">
+
+            <div class="card h-100">
+
+                <img src="{% static 'core/images/residences/villa1.jpg' %}" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+
+                        Studio meublé
+
+                    </h5>
+
+                    <p>
+
+                        📍 Angré 8ème tranche
+
+                    </p>
+
+                    <p>
+
+                        Wi-Fi • Climatisation • Cuisine équipée
+
+                    </p>
+
+                    <h5 class="text-primary">
+
+                        25 000 FCFA / nuit
+
+                    </h5>
+
+                    <a href="{% url 'residences' %}" class="btn btn-primary w-100">
+
+                        Voir la résidence
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-lg-4">
+
+            <div class="card h-100">
+
+                <img src="{% static 'core/images/residences/salon.jpg' %}" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+
+                        Chambre Salon
+
+                    </h5>
+
+                    <p>
+
+                        📍 Angré Nouveau CHU
+
+                    </p>
+
+                    <p>
+
+                        Canal+ • Parking • Sécurité
+
+                    </p>
+
+                    <h5 class="text-primary">
+
+                        35 000 FCFA / nuit
+
+                    </h5>
+
+                    <a href="{% url 'residences' %}" class="btn btn-primary w-100">
+
+                        Voir la résidence
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-lg-4">
+
+            <div class="card h-100">
+
+                <img src="{% static 'core/images/residences/salon.jpg' %}" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+
+                        Deux chambres salon
+
+                    </h5>
+
+                    <p>
+
+                        📍 Cocody Angré
+
+                    </p>
+
+                    <p>
+
+                        Grand confort • Famille • Luxe
+
+                    </p>
+
+                    <h5 class="text-primary">
+
+                        65 000 FCFA / nuit
+
+                    </h5>
+
+                    <a href="{% url 'residences' %}" class="btn btn-primary w-100">
+
+                        Voir la résidence
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+   
+           
+ 
+
+
+
+<!-- APPEL A L'ACTION -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="card border-0 shadow-lg">
+
+<div class="card-body text-center p-5">
+
+<h2 class="fw-bold">
+
+Prêt à réserver votre résidence ?
+
+</h2>
+
+<p class="lead mt-3">
+
+Notre équipe est disponible pour vous répondre immédiatement
+et confirmer votre réservation.
+
+</p>
+
+<div class="mt-4">
+
+<a href="{% url 'residences' %}"
+
+class="btn btn-warning me-3">
+
+Voir les résidences
 
 </a>
 
+<a href="https://wa.me/2250778485274"
+
+class="btn btn-success"
+
+target="_blank">
+
+📲 Réserver sur WhatsApp
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
+
+
+
+<!-- LOCALISATION -->
+
+<section class="container py-5">
+
+<div class="section-title">
+
+<h2>
+
+Nos résidences
+
+</h2>
+
+<p>
+
+Situées principalement à Cocody Angré,
+dans un environnement calme,
+sécurisé et proche de toutes les commodités.
+
+</p>
+
+</div>
+
+<div class="ratio ratio-16x9 shadow rounded">
+
+<iframe
+
+src="https://www.google.com/maps?q=Angré,Abidjan&output=embed"
+
+style="border:0;"
+
+loading="lazy">
+
+</iframe>
+
+</div>
+
+</section>
+
+
 
 {% endblock %}
