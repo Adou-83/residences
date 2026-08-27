@@ -18,11 +18,13 @@ DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = os.environ.get(
     "ALLOWED_HOSTS",
-    "127.0.0.1,localhost"
+    "127.0.0.1,localhost,residences.onrender.com,residenceslamcy.com,www.residenceslamcy.com"
 ).split(",")
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
+    "https://residences.onrender.com",
+    "https://residenceslamcy.com",
+    "https://www.residenceslamcy.com",
 ]
 
 
